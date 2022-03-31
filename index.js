@@ -10,17 +10,35 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 app.use(cors());
 
-app.post("/youtubeSearch", async (req, res) => {
+
+app.get("/", (req, res) => {
+    res.send("just dev.")
+})
+
+app.get("/youtubeSearch", async (req, res) => {
+    console.log("youtube-search: running")
     const { searchText }  = req.query
     if (!searchText) return res.status(400).send('Hatalı kullanım')
     let result = await ytsr(`${searchText}`, { pages: 0 })
     if (!result || result.length == 0 ) return res.status(400).send('Bulunamadı')
+    const filtredVideos = result.items.filter(item => item.type == 'video')
+    filtredVideos.splice(10, filtredVideos.length)
 
-    res.send(result)
+    const cleanResult = []
+    for (const item of filtredVideos) {
+        cleanResult.push({
+            title: item.title,
+            id: item.id,
+            thumbnail: item.thumbnails[1] ? item.thumbnails[1]?.url : item.thumbnails[0]?.url
+        })
+    }
 
+    res.send(cleanResult)
 })
 
-app.post("/getSong", async (req, res) => {
+
+app.get("/getSong", async (req, res) => {
+    console.log("get-song: running")
     const { url }  = req.query
 
     if (!url) return res.status(400).send('Hatalı kullanım 2.')
