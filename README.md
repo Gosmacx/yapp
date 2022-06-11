@@ -2,7 +2,12 @@
 
 A youtube downloander & searcher api.
 
-**GET** `youtubeSearch` https://yapp-server.herokuapp.com/youtubeSearch?searchText=barış%20özcan
+## **GET** `youtubeSearch`
+Required Parameters: `searchText`
+
+Example: https://yapp-server.herokuapp.com/youtubeSearch?searchText=barış%20özcan
+
+Result:
 
 ![Result](https://gcdnb.pbrd.co/images/5QpvX2sFX0fY.png?o=1)
 
