@@ -4,7 +4,6 @@ A youtube downloander & searcher api.
 
 ## **GET** `youtubeSearch`
 Required Parameters: `searchText`
-
 Example: https://yapp-server.herokuapp.com/youtubeSearch?searchText=barış%20özcan
 
 Result:
