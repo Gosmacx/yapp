@@ -18,9 +18,9 @@ app.get("/", (req, res) => {
 app.get("/youtubeSearch", async (req, res) => {
     console.log("youtube-search: running")
     const { searchText }  = req.query
-    if (!searchText) return res.status(400).send('Hatalı kullanım')
+    if (!searchText) return res.status(400).send('searchText is required')
     let result = await ytsr(`${searchText}`, { pages: 0 })
-    if (!result || result.length == 0 ) return res.status(400).send('Bulunamadı')
+    if (!result || result.length == 0 ) return res.status(400).send('Not Found')
     const filtredVideos = result.items.filter(item => item.type == 'video')
     filtredVideos.splice(10, filtredVideos.length)
 
@@ -32,7 +32,7 @@ app.get("/youtubeSearch", async (req, res) => {
             thumbnail: item.thumbnails[1] ? item.thumbnails[1]?.url : item.thumbnails[0]?.url
         }
     }))
-    
+
 })
 
 
@@ -40,10 +40,10 @@ app.get("/getSong", async (req, res) => {
     console.log("get-song: running")
     const { url }  = req.query
 
-    if (!url) return res.status(400).send('Hatalı kullanım 2.')
+    if (!url) return res.status(400).send('url is required')
     const regexYT = /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/
     const succes = url.match(regexYT)
-    if (!succes) return res.status(400).send('Hatalı kullanım 3.')
+    if (!succes) return res.status(400).send('URL is not valid')
 
     let stream = ytdl(`${url}`, { filter: "audioonly", quality: "lowestaudio" }).pipe(res)
 })
