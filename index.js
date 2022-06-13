@@ -24,15 +24,15 @@ app.get("/youtubeSearch", async (req, res) => {
     const filtredVideos = result.items.filter(item => item.type == 'video')
     filtredVideos.splice(10, filtredVideos.length)
 
-    filtredVideos.map(item => {
+
+    res.send(filtredVideos.map(item => {
         return {
             title: item.title,
             id: item.id,
             thumbnail: item.thumbnails[1] ? item.thumbnails[1]?.url : item.thumbnails[0]?.url
         }
-    })
-
-    res.send(filtredVideos)
+    }))
+    
 })
 
 
