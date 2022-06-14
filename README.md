@@ -1,6 +1,6 @@
 # yapp
 
-A youtube downloander & searcher api.
+A youtube downloader & searcher api.
 
 ## **GET** `youtubeSearch`
 Required Parameters: `searchText`
