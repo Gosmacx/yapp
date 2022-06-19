@@ -9,7 +9,7 @@ Example: https://yapp-server.herokuapp.com/youtubeSearch?searchText=barış%20ö
 
 Result:
 
-![Result](https://gcdnb.pbrd.co/images/5QpvX2sFX0fY.png?o=1)
+![Result](https://raw.githubusercontent.com/Gosmacx/yapp/main/screenshots/yapp-1.png)
 
 ## **GET** `getSong` 
 Required Parameters: `url`
