@@ -29,7 +29,8 @@ app.get("/youtubeSearch", async (req, res) => {
         return {
             title: item.title,
             id: item.id,
-            thumbnail: item.thumbnails[1] ? item.thumbnails[1]?.url : item.thumbnails[0]?.url
+            thumbnail: item.thumbnails[1] ? item.thumbnails[1]?.url : item.thumbnails[0]?.url,
+            url: item.url
         }
     }))
 
